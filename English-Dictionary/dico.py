@@ -18,5 +18,10 @@ def translate(w):
         return "The word doesn't exist. Please Check-it"
 
 word = input("Entrer the word :")
+output = translate(word)
+if type(output) == list:
+    for item in output:
+        print(item)
 
-print(translate(word))
+else:
+    print(output)
