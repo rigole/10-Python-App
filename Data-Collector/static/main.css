@@ -36,6 +36,8 @@ transiton : all 0.2s ease-in-out;
 width: 70px;
 height: 30px;
 background-color: steelblue;
-margn: 4px;
-
+margin: 4px;
+}
+.container p {
+margin: 100px;
 }
