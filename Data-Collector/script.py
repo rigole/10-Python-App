@@ -1,6 +1,25 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from typing import Callable
+
+class MySQLALCHEMY(SQLAlchemy):
+    Column:Callable
+    String:Callable
+    Integer: Callable
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:test123@localhost/height_collector'
+db = SQLAlchemy(app)
+
+class Data(db.Model):
+    __tablename__="data"
+    id=db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True)
+    height = db.Column(db.Integer)
+
+    def __init__(self, email_, height_):
+        self.email_=email_
+        self.height_=height_
 
 @app.route("/")
 def index():
