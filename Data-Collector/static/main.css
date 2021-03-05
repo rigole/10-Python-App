@@ -41,3 +41,8 @@ margin: 4px;
 .container p {
 margin: 100px;
 }
+.message{
+font-size: 15px;
+color: #ff9999;
+font-family: Arial, sans-serif;
+}
