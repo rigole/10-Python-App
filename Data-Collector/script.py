@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from typing import Callable
-
+"""
 class MySQLALCHEMY(SQLAlchemy):
     Column:Callable
     String:Callable
     Integer: Callable
-
+"""
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:test123@localhost/height_collector'
 db = SQLAlchemy(app)
@@ -14,8 +14,8 @@ db = SQLAlchemy(app)
 class Data(db.Model):
     __tablename__="data"
     id=db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True)
-    height = db.Column(db.Integer)
+    email_ = db.Column(db.String(120), unique=True)
+    height_ = db.Column(db.Integer)
 
     def __init__(self, email_, height_):
         self.email_=email_
@@ -29,8 +29,11 @@ def index():
 def success():
     if request.method=='POST':
         email=request.form["email_name"]
-        height=request.form['height_name']
+        height=request.form["height_name"]
         print(request.form)
+        data=Data(email,height)
+        db.session.add(data)
+        db.session.commit()
     return render_template("success.html")
 
 if __name__ == '__main__':
