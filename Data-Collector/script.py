@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from typing import Callable
+from send_email import send_email
 """
 class MySQLALCHEMY(SQLAlchemy):
     Column:Callable
@@ -30,7 +30,7 @@ def success():
     if request.method=='POST':
         email=request.form["email_name"]
         height=request.form["height_name"]
-        print(request.form)
+        send_email(email, height)
         if(db.session.query(Data).filter(Data.email_==email).count()==0):
             data=Data(email,height)
             db.session.add(data)
