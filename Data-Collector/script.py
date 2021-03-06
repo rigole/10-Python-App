@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
+from sqlalchemy.sql import  func
 """
 class MySQLALCHEMY(SQLAlchemy):
-    Column:Callable
+    Column:Callable 
     String:Callable
     Integer: Callable
 """
@@ -35,6 +36,8 @@ def success():
             data=Data(email,height)
             db.session.add(data)
             db.session.commit()
+            average_height = db.session.query(func.avg(Data.height_)).scalar()
+            print(average_height)
             return render_template("success.html")
     return render_template('index.html',
     text="Seems like we've got something from that email address already!")
