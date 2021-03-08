@@ -6,7 +6,7 @@ def send_email(email, height, average_height, count):
      to_email=email
 
      subject="height data "
-     message="Hey there, your height is <strong>%s</strong>. Average height of all is %s and that is calculated out of #s of users" % (height, average_height, count)
+     message="Hey there, your height is <strong>%s</strong>. Average height of all is %s and that is calculated out of %s of users" % (height, average_height, count)
 
      msg=MIMEText(message, 'html')
      msg['Subject']=subject
